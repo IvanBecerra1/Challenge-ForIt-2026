@@ -154,7 +154,7 @@ Iniciar el frontend:
 npm run dev
 ```
 
-El frontend corre en `http://localhost:5173`
+El frontend corre en `http://localhost:5174`
 
 ---
 
