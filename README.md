@@ -88,7 +88,7 @@ El proyecto cuenta con configuración de Docker para levantar tanto el backend c
 ### Cómo levantar con Docker
 
 ```bash
-docker-compose up --build
+docker compose up [-d]
 ```
 
 Esto levanta los dos servicios automáticamente:
@@ -101,7 +101,7 @@ Esto levanta los dos servicios automáticamente:
 ### Para detener los contenedores
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### Estructura de Docker
