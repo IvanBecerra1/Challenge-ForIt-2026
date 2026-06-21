@@ -11,15 +11,48 @@
       "name": "getAllTask",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/tasks/",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            ""
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "createTask",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n        \"title\" : \"test title\",\n        \"description\": \"test description\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/tasks/",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            ""
+          ]
+        }
       },
       "response": []
     },
@@ -28,8 +61,17 @@
       "request": {
         "method": "PUT",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"test title modificado\",\n    \"description\": \"test description modificado\",\n    \"completed\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": "localhost:3000/api/tasks/cf31cbb4-94a9-42c8-8780-e3d7e3febeb0",
+          "raw": "localhost:3000/api/tasks/2",
           "host": [
             "localhost"
           ],
@@ -37,7 +79,7 @@
           "path": [
             "api",
             "tasks",
-            "cf31cbb4-94a9-42c8-8780-e3d7e3febeb0"
+            "2"
           ]
         }
       },
