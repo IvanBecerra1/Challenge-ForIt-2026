@@ -1,5 +1,6 @@
 const express = require('express');
-const {v4 : uuid4 } = require('uuid'); 
+//const {v4 : uuid4 } = require('uuid'); 
+const crypto = require('crypto');
 const router = express.Router();
 
 /**
@@ -26,7 +27,7 @@ const createTask = (request, response) => {
     }
 
     const createTask = {
-        id : uuid4(),
+        id : crypto.randomUUID(),
         title,
         description: description || '',
         completed: false,

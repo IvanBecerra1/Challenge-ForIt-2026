@@ -8,6 +8,7 @@ function TaskForm() {
     const navigate = useNavigate();
 
     const { id } = useParams();
+    const [errors, setErrors] = useState({ title: '', description: '' });
 
     useEffect(() => {
         if (id) {
@@ -22,7 +23,12 @@ function TaskForm() {
         }
     }, [id]);
 
+
+
     const handleSubmit = async () => {
+        if (!validate()) 
+            return;
+
         if (!title.trim()) 
             return;
 
@@ -32,6 +38,19 @@ function TaskForm() {
             await createTask(title, description);
     
         navigate('/');
+    }
+
+    const validate = () => {
+        const newErrors = { title: '', description: '' };
+        
+        if (!title.trim()) 
+            newErrors.title = 'El título es obligatorio';
+        if (!description.trim()) 
+            newErrors.description = 'La descripción es obligatoria';
+
+        setErrors(newErrors);
+
+        return !newErrors.title && !newErrors.description;
     }
 
     return (
@@ -52,18 +71,30 @@ function TaskForm() {
                         {id ? 'Editar tarea' : 'Crear nueva tarea'}
                     </h2>
 
-                    <input
-                        type="text"
-                        placeholder="Título"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                        className="bg-gray-700 rounded-lg px-4 py-2 outline-none text-white placeholder-gray-400"/>
+                    <div className="flex flex-col gap-1">
+                        <input
+                            type="text"
+                            placeholder="Título"
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
+                            className="bg-gray-700 rounded-lg px-4 py-2 outline-none text-white placeholder-gray-400"
+                            />
+                        {errors.title && (
+                            <span className="text-red-400 text-sm">{errors.title}</span>
+                        )}
+                    </div>
 
-                    <textarea
-                        placeholder="Descripción"
-                        onChange={e => setDescription(e.target.value)}
-                        className="bg-gray-700 rounded-lg px-4 py-2 outline-none text-white placeholder-gray-400 resize-none h-28"/>
-
+                    <div className="flex flex-col gap-1">
+                        <textarea
+                            placeholder="Descripción"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                            className="bg-gray-700 rounded-lg px-4 py-2 outline-none text-white placeholder-gray-400 resize-none h-28"
+                            />
+                            {errors.description && (
+                                <span className="text-red-400 text-sm">{errors.description}</span>
+                            )}
+                    </div>
                     <div className="flex gap-4">
                         <button
                             onClick={handleSubmit}
