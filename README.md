@@ -10,15 +10,12 @@ Aplicación fullstack de gestión de tareas desarrollada como parte del challeng
 - Node.js
 - Express
 - dotenv
-- uuid
 
 **Frontend**
 - React + TypeScript
 - Vite
 - Tailwind CSS
 - React Router DOM
-- Lucide React (iconos)
-
 ---
 
 ## Funcionalidades
@@ -32,6 +29,7 @@ Aplicación fullstack de gestión de tareas desarrollada como parte del challeng
 
 ## Bonus implementados
 
+- Configuración de Docker para levantar tanto el backend como el frontend en contenedores
 - TypeScript en el frontend
 - Tailwind CSS para los estilos
 - Buenas prácticas de arquitectura inspiradas en Java/Spring Boot (separación en capas)
@@ -78,11 +76,45 @@ Challenge-ForIT-2026/
 
 ---
 
-## Cómo ejecutar el proyecto localmente
+## Ejecutar proyecto con Docker (Plus)
+
+El proyecto cuenta con configuración de Docker para levantar tanto el backend como el frontend en contenedores.
 
 ### Requisitos previos
 
-- Node.js v18 o superior
+- Docker
+- Docker Compose
+
+### Cómo levantar con Docker
+
+```bash
+docker-compose up --build
+```
+
+Esto levanta los dos servicios automáticamente:
+
+| Servicio | URL |
+|----------|-----|
+| Backend | http://localhost:3000 |
+| Frontend | http://localhost:5174 |
+
+### Para detener los contenedores
+
+```bash
+docker-compose down
+```
+
+### Estructura de Docker
+
+- `backend/Dockerfile` — imagen basada en Node 18 Alpine
+- `frontend/Dockerfile` — imagen basada en Node 22 Alpine (requerido para compatibilidad con Vite)
+- `docker-compose.yml` — orquesta ambos contenedores, el frontend depende del backend
+
+## Cómo ejecutar el proyecto localmente (Sin docker)
+
+### Requisitos previos
+
+- Node.js v22 o superior
 - npm
 
 ### 1. Clonar el repositorio
